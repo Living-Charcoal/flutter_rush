@@ -1,16 +1,49 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-void main() => runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_rush/page/splash_page.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isAndroid) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  }
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  MaterialColor _white = const MaterialColor(
+    0xFFFFFFFF,
+    const <int, Color>{
+      50: const Color(0xFFFFFFFF),
+      100: const Color(0xFFFFFFFF),
+      200: const Color(0xFFFFFFFF),
+      300: const Color(0xFFFFFFFF),
+      400: const Color(0xFFFFFFFF),
+      500: const Color(0xFFFFFFFF),
+      600: const Color(0xFFFFFFFF),
+      700: const Color(0xFFFFFFFF),
+      800: const Color(0xFFFFFFFF),
+      900: const Color(0xFFFFFFFF),
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'RushB',
+      initialRoute: "/",
+      routes: {
+        "/": (context) => MyHomePage(
+              title: "sdd",
+            ),
+        "/splash": (context) => SplashPage()
+      },
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: _white,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -25,45 +58,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-
+    final size = MediaQuery.of(context).size;
+    final _width = size.width;
+    final _height = size.height;
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: Column(
+        children: <Widget>[
+          Container(
+            color: Colors.blue,
+            width: _width,
+            height: _height / 8,
+            child: Flex(
+              direction: Axis.horizontal,
+              children: <Widget>[Text(":sdsdsdd")],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+          )
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
