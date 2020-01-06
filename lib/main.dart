@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_rush/page/splash_page.dart';
+import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,48 +34,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'RushB',
-      initialRoute: "/",
-      routes: {
-        "/": (context) => MyHomePage(
-              title: "sdd",
-            ),
-        "/splash": (context) => SplashPage()
-      },
+      home: BottomNavigationWidget(),
       theme: ThemeData(
         primarySwatch: _white,
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final _width = size.width;
-    final _height = size.height;
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Container(
-            color: Colors.blue,
-            width: _width,
-            height: _height / 8,
-            child: Flex(
-              direction: Axis.horizontal,
-              children: <Widget>[Text(":sdsdsdd")],
-            ),
-          )
-        ],
       ),
     );
   }
