@@ -8,7 +8,6 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class BottomNavigationState extends State<BottomNavigationWidget> {
-  final _bottomNavigationColor = Colors.red;
   var _currentIndex = 0;
   List<Widget> _list = <Widget>[];
   
@@ -24,42 +23,39 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
     return Scaffold(
       body: MyHomePage(),
       bottomNavigationBar: BottomNavigationBar(
+        iconSize: 35.0,
+        selectedFontSize: 10.0,
+        unselectedFontSize: 10.0,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: _bottomNavigationColor,
               ),
               title: Text(
                 'HOME',
-                style: TextStyle(color: _bottomNavigationColor),
               )),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.email,
-                color: _bottomNavigationColor,
               ),
               title: Text(
-                'Email',
-                style: TextStyle(color: _bottomNavigationColor),
+                'EMAIL',
               )),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.pages,
-                color: _bottomNavigationColor,
               ),
               title: Text(
                 'PAGES',
-                style: TextStyle(color: _bottomNavigationColor),
               )),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.airplay,
-                color: _bottomNavigationColor,
+                Icons.adjust,
               ),
               title: Text(
                 'AIRPLAY',
-                style: TextStyle(color: _bottomNavigationColor),
               )),
         ],
         currentIndex: _currentIndex,
@@ -68,7 +64,7 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
             _currentIndex = index;
           });
         },
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
       ),
     );
   }

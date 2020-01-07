@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rush/widgets/content_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -20,7 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           Container(
-              color: Colors.blue,
+//              color: Colors.blue,
               width: _width,
               height: _heightOfThis,
               child: Container(
@@ -29,11 +30,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Flex(
                   direction: Axis.horizontal,
                   children: <Widget>[
-                    Icon(Icons.favorite,size: 40,),
-                    Text("asccccccccccc",)
+                    Icon(
+                      Icons.ac_unit,
+                      size: 40,
+                    ),
+                    SizedBox(
+                      width: _width * 0.02,
+                    ),
+                    Text("荒野大镖客",style: TextStyle(fontSize: 30,fontStyle: FontStyle.italic),)
                   ],
                 ),
-              ))
+              )),
+          MainContentWidget()
         ],
       ),
     );
