@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_rush/widgets/content_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -37,11 +39,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: _width * 0.02,
                     ),
-                    Text("荒野大镖客",style: TextStyle(fontSize: 30,fontStyle: FontStyle.italic),)
+                    Text(
+                      "荒野大镖客",
+                      style:
+                          TextStyle(fontSize: 30, fontStyle: FontStyle.italic),
+                    )
                   ],
                 ),
               )),
-          MainContentWidget()
+          Expanded(
+            child: MainContentWidget(),
+          )
         ],
       ),
     );

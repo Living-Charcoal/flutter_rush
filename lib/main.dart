@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
+import 'network/http_utils.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
+  HttpUtils.init();
   runApp(MyApp());
 }
 
