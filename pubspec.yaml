@@ -17,10 +17,10 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
-  # json 序列化
+  webview_flutter: ^0.3.19+3
+  flutter_swiper : ^1.1.6
   build_runner: ^1.7.3
   json_serializable: ^3.2.5
-  # 网络请求库
   dio: ^3.0.8
   flutter:
     sdk: flutter

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_rush/page/browser_page.dart';
 import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
 import 'network/http_utils.dart';
