@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rush/page/home_page.dart';
+import 'package:flutter_rush/utils/global_utils.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   @override
@@ -13,12 +14,15 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
   
   @override
   void initState() {
+
     _list..add(MyHomePage());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    GlobalUtils.init(context);
+
     // TODO: implement build
     return Scaffold(
       body: MyHomePage(),

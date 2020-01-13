@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_rush/utils/global_utils.dart';
 import 'package:flutter_rush/widgets/content_widget.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -13,22 +14,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final _width = size.width;
-    final _heightOfThis = size.height / 8;
     return Scaffold(
       body: Column(
         children: <Widget>[
           Container(
 //              color: Colors.blue,
-              width: _width,
-              height: _heightOfThis,
+              width: GlobalUtils.calcScreenWidth(),
+              height: GlobalUtils.calcWidgetHeightMultiple(0.125),
               child: Container(
                 margin: EdgeInsets.only(
-                    left: _width * 0.05, top: _heightOfThis / 2),
+                    left: GlobalUtils.calcWidgetWidthMultiple(0.05),
+                    top: GlobalUtils.calcWidgetHeightMultiple(0.0625)),
                 child: Flex(
                   direction: Axis.horizontal,
                   children: <Widget>[
@@ -37,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: 40,
                     ),
                     SizedBox(
-                      width: _width * 0.02,
+                      width: GlobalUtils.calcWidgetWidthMultiple(0.02),
                     ),
                     Text(
                       "荒野大镖客",
