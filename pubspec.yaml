@@ -21,6 +21,7 @@ dependencies:
   flutter_swiper : ^1.1.6
   build_runner: ^1.7.3
   json_serializable: ^3.2.5
+  jpush_flutter: 0.1.0
   dio: ^3.0.8
   flutter:
     sdk: flutter

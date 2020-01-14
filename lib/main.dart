@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
 import 'network/http_utils.dart';
+import 'package:jpush_flutter/jpush_flutter.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +14,37 @@ void main() {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   }
   HttpUtils.init();
+  registerPush();
   runApp(MyApp());
 }
 
+void registerPush(){
+  JPush jpush = new JPush();
+  jpush.setup(
+    appKey: "827a14727324faf63124a96a",
+    channel: "theChannel",
+    production: false,
+    debug: true, // 设置是否打印 debug 日志
+  );
+
+  jpush.addEventHandler(
+    // 接收通知回调方法。
+    onReceiveNotification: (Map<String, dynamic> message) async {
+      print("flutter onReceiveNotification: $message");
+    },
+    // 点击通知回调方法。
+    onOpenNotification: (Map<String, dynamic> message) async {
+      print("flutter onOpenNotification: $message");
+    },
+    // 接收自定义消息回调方法。
+    onReceiveMessage: (Map<String, dynamic> message) async {
+      print("flutter onReceiveMessage: $message");
+    },
+  );
+  jpush.getRegistrationID().then((rid) {
+    print("id    $rid  ");
+  });
+}
 class MyApp extends StatelessWidget {
   MaterialColor _white = const MaterialColor(
     0xFFFFFFFF,
