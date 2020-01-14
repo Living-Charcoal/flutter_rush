@@ -77,7 +77,7 @@ class _MainContentWidgetState extends State<MainContentWidget> {
                 children: <Widget>[
                   Container(
                     child: Text(
-                      "Hot keys",
+                      "Hot Keys",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -99,6 +99,24 @@ class _MainContentWidgetState extends State<MainContentWidget> {
               constraints: new BoxConstraints.loose(new Size(
                   GlobalUtils.calcScreenWidth(),
                   GlobalUtils.calcWidgetHeightMultiple(0.2))),
+            ),
+            IntrinsicHeight(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all( GlobalUtils.calcWidgetHeightMultiple(0.015)),
+                      alignment:AlignmentDirectional.centerStart,
+                      child: Text(
+                        "Sticky Posts",
+                        style:
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+
+                    )
+                  )
+                ],
+              ),
             )
           ],
         ),
