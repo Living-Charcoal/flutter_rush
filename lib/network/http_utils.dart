@@ -1,12 +1,11 @@
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rush/constant/net_constant.dart';
-import 'package:flutter_rush/model/article_model.dart';
 import 'package:flutter_rush/model/banner_model.dart';
 import 'package:flutter_rush/model/base_response.dart';
 import 'package:flutter_rush/model/hot_keys.dart';
+import 'package:flutter_rush/model/useful_site_entity.dart';
 import 'package:flutter_rush/network/cache_interceptor.dart';
 
 class HttpUtils {
@@ -46,9 +45,9 @@ class HttpUtils {
     return ret;
   }
 
-  Future<List<ArticleModel>> requestArticleModel() async{
-    var res  = await dio.get(NetConstant.MAIN_ARTICLE,options: _options.merge(extra: {"noCache": false}));
-    List<ArticleModel> ret = BaseResponse<List<dynamic>>.fromJson(res.data).data.map((f)=>ArticleModel.fromJson(f)).toList();
+  Future<List<UsefulSiteEntity>> requestArticleModel() async{
+    var res  = await dio.get(NetConstant.USEFUL_SITE,options: _options.merge(extra: {"noCache": false}));
+    List<UsefulSiteEntity> ret = BaseResponse<List<dynamic>>.fromJson(res.data).data.map((f)=>UsefulSiteEntity.fromJson(f)).toList();
     return ret;
   }
 

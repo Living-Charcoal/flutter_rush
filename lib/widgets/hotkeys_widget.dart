@@ -4,6 +4,7 @@ import 'package:flutter_rush/network/http_utils.dart';
 import 'package:flutter_rush/utils/global_utils.dart';
 
 class HotKeyWidget extends StatefulWidget {
+  const HotKeyWidget({Key key}):super(key:key);
   @override
   _HotKeyWidgetState createState() => _HotKeyWidgetState();
 }
@@ -13,6 +14,7 @@ class _HotKeyWidgetState extends State<HotKeyWidget> {
   @override
   void initState() {
     super.initState();
+    print("hot key initState");
     HttpUtils().requestHotKeys().then((o) {
       setState(() {
         _hotKeys.clear();
@@ -22,6 +24,7 @@ class _HotKeyWidgetState extends State<HotKeyWidget> {
   }
   @override
   Widget build(BuildContext context) {
+    print("hot key build");
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -52,7 +55,7 @@ class _HotKeyWidgetState extends State<HotKeyWidget> {
     );
   }
   Widget _buildItem(int index) {
-    print("size    ${_hotKeys.length}");
+//    print("size    ${_hotKeys.length}");
     return Card(
       margin: EdgeInsets.all(9),
       shape: const RoundedRectangleBorder(
@@ -67,5 +70,10 @@ class _HotKeyWidgetState extends State<HotKeyWidget> {
       ),
     );
 
+  }
+  @override
+  void dispose() {
+    _hotKeys=null;
+    super.dispose();
   }
 }
