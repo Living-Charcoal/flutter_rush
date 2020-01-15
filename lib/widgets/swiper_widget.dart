@@ -6,6 +6,7 @@ import 'package:flutter_rush/utils/global_utils.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class SwiperWidget extends StatefulWidget {
+  const SwiperWidget({Key key}):super(key:key);
   @override
   _SwiperWidgetState createState() => _SwiperWidgetState();
 }
@@ -14,7 +15,6 @@ class _SwiperWidgetState extends State<SwiperWidget> {
   List<BannerModel> _bannerList = List();
   @override
   void initState() {
-    super.initState();
     HttpUtils().requestBanner().then((v) {
       setState(() {
         _bannerList.clear();
@@ -22,10 +22,21 @@ class _SwiperWidgetState extends State<SwiperWidget> {
       });
 
     });
+    super.initState();
+    print("SwiperWidget init");
+
   }
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
+    print("SwiperWidget build");
+//    FutureBuilder(
+//      future: ,
+//      builder: (context,snap){
+//
+//      },
+//    );
+    return
+      ConstrainedBox(
         child: Swiper(
           duration: 500,
           autoplay: true,
@@ -63,5 +74,10 @@ class _SwiperWidgetState extends State<SwiperWidget> {
       clipBehavior: Clip.antiAlias,
       elevation: 4.0,
     );
+  }
+  @override
+  void dispose() {
+    _bannerList=null;
+    super.dispose();
   }
 }

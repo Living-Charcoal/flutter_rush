@@ -5,5 +5,5 @@ class NetConstant {
 
   static const String HOT_KEYS = "/hotkey/json";
 
-  static const String MAIN_ARTICLE = "/article/top/json";
+  static const String USEFUL_SITE = "/friend/json";
 }
