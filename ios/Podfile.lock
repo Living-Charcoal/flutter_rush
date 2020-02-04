@@ -1,7 +1,9 @@
 PODS:
   - Flutter (1.0.0)
-  - JCore (2.1.1)
-  - JPush (3.2.1):
+  - image_picker (0.0.1):
+    - Flutter
+  - JCore (2.1.8)
+  - JPush (3.2.8):
     - JCore (< 3.0.0, >= 2.0.0)
   - jpush_flutter (0.0.2):
     - Flutter
@@ -11,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - jpush_flutter (from `.symlinks/plugins/jpush_flutter/ios`)
   - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
@@ -22,6 +25,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
   jpush_flutter:
     :path: ".symlinks/plugins/jpush_flutter/ios"
   webview_flutter:
@@ -29,8 +34,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  JCore: 4072327557f0b83cc22dd4041f2f839740c0077b
-  JPush: a1ff8b8ec53fa3419b414946e4db4efa313baeae
+  image_picker: a211f28b95a560433c00f5cd3773f4710a20404d
+  JCore: a7f1dead960d77a97717c73ea8b0aa5b33706491
+  JPush: 8ce888d6dedfa417e90c8b6bc87405a16ce2e699
   jpush_flutter: d7e3a79466eb9447fd940233f02661b514f137c6
   webview_flutter: bec7599de6bfbe8008a739aa3ebd7b364ea9d0cd
 

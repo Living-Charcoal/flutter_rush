@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rush/page/home_page.dart';
+import 'package:flutter_rush/page/mine.dart';
+import 'package:flutter_rush/page/save.dart';
 import 'package:flutter_rush/utils/global_utils.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
@@ -14,7 +16,11 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
 
   @override
   void initState() {
-    _list..add(MyHomePage());
+    _list
+      ..add(MyHomePage())
+      ..add(MinePage())
+      ..add(SaveWidget())
+      ..add(MinePage());
     super.initState();
   }
 
@@ -24,7 +30,7 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
 
     // TODO: implement build
     return Scaffold(
-      body: MyHomePage(),
+      body: _list[_currentIndex], // 根据下标切换页面
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 35.0,
         selectedFontSize: 10.0,
@@ -58,7 +64,7 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
                 Icons.adjust,
               ),
               title: Text(
-                'mine',
+                'MINE',
               )),
         ],
         currentIndex: _currentIndex,
