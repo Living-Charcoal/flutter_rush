@@ -11,10 +11,9 @@ class BottomNavigationWidget extends StatefulWidget {
 class BottomNavigationState extends State<BottomNavigationWidget> {
   var _currentIndex = 0;
   List<Widget> _list = <Widget>[];
-  
+
   @override
   void initState() {
-
     _list..add(MyHomePage());
     super.initState();
   }
@@ -59,7 +58,7 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
                 Icons.adjust,
               ),
               title: Text(
-                'AIRPLAY',
+                'mine',
               )),
         ],
         currentIndex: _currentIndex,
