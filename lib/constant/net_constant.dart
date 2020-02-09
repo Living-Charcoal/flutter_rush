@@ -9,5 +9,5 @@ class NetConstant {
 
   static const String TOP_ARTICLE="/article/top/json";
 
-  static const String MAIN_ARTICLE ="""/article/list/%s/json""";
+  static const String MAIN_ARTICLE ="/article/list/%s/json";
 }

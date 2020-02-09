@@ -4,8 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_rush/provide/main_article_provider.dart';
 import 'package:flutter_rush/provide/swiper_data.dart';
 import 'package:flutter_rush/provide/top_article.dart';
-import 'package:flutter_rush/widgets/article_widget.dart';
-import 'package:flutter_rush/widgets/skeleton.dart';
 
 import 'package:flutter_rush/widgets/skeleton_wait.dart';
 import 'package:flutter_rush/widgets/top_article.dart';
@@ -20,30 +18,23 @@ class MainContentWidget extends StatefulWidget {
 }
 
 class _MainContentWidgetState extends State<MainContentWidget> {
-  SwiperData _swiperData= SwiperData();
   void _getData() {
     Provider.of<SwiperData>(context, listen: false).changeData();
-    Provider.of<TopArticleProvider>(context,listen: false).getTopArticle();
+    Provider.of<TopArticleProvider>(context, listen: false).getTopArticle();
+    Provider.of<MainArticleProvider>(context, listen: false)
+        .getMainArticle("0");
   }
 
-  @override
-  void dispose() {
-    if(_swiperData!=null){
-      _swiperData= null;
-    }
-    super.dispose();
-  }
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 1500)).then((value) {
       _getData();
-//      _swiperData.changeData();
     });
   }
 
   Future<void> _handleRefresh() async {
-    _swiperData.changeData();
+    _getData();
   }
 
   @override
@@ -70,25 +61,28 @@ class _MainContentWidgetState extends State<MainContentWidget> {
               title: TopArticle.TITLE,
             ),
           ),
-          Consumer2<TopArticleProvider, MainArticleProvider>(
-            builder: (BuildContext context, TopArticleProvider value,
-                MainArticleProvider value2, Widget child) {
+          Consumer<TopArticleProvider>(
+            builder:
+                (BuildContext context, TopArticleProvider value, Widget child) {
               if(value.articleModel!=null){
-                return ArticleWidget(initData: value.articleModel,top: true,);
+                return TopArticle(
+                  articleModel: value.articleModel,
+                );
               }else{
                 return SliverToBoxAdapter(
-                  child: SkeletonList(
-                    builder: (context,i){
-                      return ArticleSkeletonItem();
-                    },
-                  )
+                  child: SizedBox(),
                 );
               }
 
             },
+          ),
+          Consumer<MainArticleProvider>(
+            builder: (BuildContext context, MainArticleProvider value,
+                Widget child) {
+              return MainNormalArticle(value.model,value);
+            },
           )
         ],
-
       ),
       onRefresh: _handleRefresh,
     );

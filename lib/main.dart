@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_rush/utils/log_utils.dart';
 import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
 import 'network/http_utils.dart';
@@ -17,6 +18,7 @@ void main() async {
 
   HttpUtils.init();
   registerPush();
+  LogUtil.init(isDebug: true,title: "mzx");
 
   runApp(
     MyApp(),

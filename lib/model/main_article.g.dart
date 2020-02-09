@@ -10,8 +10,8 @@ MainArticle _$MainArticleFromJson(Map<String, dynamic> json) {
   return MainArticle(
     json['curPage'] as int,
     (json['datas'] as List)
-        ?.map(
-            (e) => e == null ? null : Datas.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+            e == null ? null : ArticleModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     json['offset'] as int,
     json['over'] as bool,
@@ -32,18 +32,16 @@ Map<String, dynamic> _$MainArticleToJson(MainArticle instance) =>
       'total': instance.total,
     };
 
-Datas _$DatasFromJson(Map<String, dynamic> json) {
-  return Datas(
+ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
+  return ArticleModel(
     json['apkLink'] as String,
     json['audit'] as int,
     json['author'] as String,
-    json['canEdit'] as bool,
     json['chapterId'] as int,
     json['chapterName'] as String,
     json['collect'] as bool,
     json['courseId'] as int,
     json['desc'] as String,
-    json['descMd'] as String,
     json['envelopePic'] as String,
     json['fresh'] as bool,
     json['id'] as int,
@@ -59,7 +57,10 @@ Datas _$DatasFromJson(Map<String, dynamic> json) {
     json['shareUser'] as String,
     json['superChapterId'] as int,
     json['superChapterName'] as String,
-    json['tags'] as List,
+    (json['tags'] as List)
+        ?.map(
+            (e) => e == null ? null : Tags.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     json['title'] as String,
     json['type'] as int,
     json['userId'] as int,
@@ -68,17 +69,16 @@ Datas _$DatasFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DatasToJson(Datas instance) => <String, dynamic>{
+Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
+    <String, dynamic>{
       'apkLink': instance.apkLink,
       'audit': instance.audit,
       'author': instance.author,
-      'canEdit': instance.canEdit,
       'chapterId': instance.chapterId,
       'chapterName': instance.chapterName,
       'collect': instance.collect,
       'courseId': instance.courseId,
       'desc': instance.desc,
-      'descMd': instance.descMd,
       'envelopePic': instance.envelopePic,
       'fresh': instance.fresh,
       'id': instance.id,
@@ -100,4 +100,16 @@ Map<String, dynamic> _$DatasToJson(Datas instance) => <String, dynamic>{
       'userId': instance.userId,
       'visible': instance.visible,
       'zan': instance.zan,
+    };
+
+Tags _$TagsFromJson(Map<String, dynamic> json) {
+  return Tags(
+    json['name'] as String,
+    json['url'] as String,
+  );
+}
+
+Map<String, dynamic> _$TagsToJson(Tags instance) => <String, dynamic>{
+      'name': instance.name,
+      'url': instance.url,
     };

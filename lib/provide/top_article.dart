@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rush/model/article_model.dart';
+import 'package:flutter_rush/model/main_article.dart';
 import 'package:flutter_rush/network/http_utils.dart';
 
 class TopArticleProvider with ChangeNotifier {
@@ -10,7 +10,6 @@ class TopArticleProvider with ChangeNotifier {
   void getTopArticle() async {
     HttpUtils().requestTopArticle().then((onValue){
       _articleModel=onValue;
-      print(onValue);
       notifyListeners();
     }
     );

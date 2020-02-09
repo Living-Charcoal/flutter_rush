@@ -1,21 +1,25 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rush/model/main_article.dart';
 import 'package:flutter_rush/network/http_utils.dart';
 
-class MainArticleProvider with ChangeNotifier{
+class MainArticleProvider with ChangeNotifier {
   MainArticle _mainArticle;
 
-  List<Datas>  _datas;
+  MainArticle get mainArticle => _mainArticle;
 
-  List<Datas> get datas => _datas;
+  List<ArticleModel> _model;
 
-  void getMainArticle(String page){
-    HttpUtils().requestMainArticle(page).then((onValue){
-//      datas.add(onValue.datas)
-    _datas.addAll(onValue.datas);
-    notifyListeners();
+  List<ArticleModel> get model => _model;
+
+  void getMainArticle(String page) {
+    HttpUtils().requestMainArticle(page).then((onValue) {
+      _mainArticle = onValue;
+      if(_model==null){
+        _model =onValue.datas;
+      }else{
+        _model.addAll(onValue.datas);
+      }
+      notifyListeners();
     });
   }
-
 }
