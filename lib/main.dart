@@ -7,18 +7,23 @@ import 'package:flutter_rush/widgets/bottom_navigation.dart';
 import 'network/http_utils.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarBrightness: Brightness.light));
   }
+
   HttpUtils.init();
   registerPush();
-  runApp(MyApp());
+
+  runApp(
+    MyApp(),
+  );
 }
 
-void registerPush(){
+void registerPush() {
   JPush jpush = new JPush();
   jpush.setup(
     appKey: "827a14727324faf63124a96a",
@@ -45,6 +50,7 @@ void registerPush(){
     print("id    $rid  ");
   });
 }
+
 class MyApp extends StatelessWidget {
   MaterialColor _white = const MaterialColor(
     0xFFFFFFFF,
@@ -64,7 +70,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'RushB',
       home: BottomNavigationWidget(),

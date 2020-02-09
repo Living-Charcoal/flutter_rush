@@ -2,65 +2,61 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_rush/model/useful_site_entity.dart';
-import 'package:flutter_rush/network/http_utils.dart';
+import 'package:flutter_rush/provide/useful_site_data.dart';
 import 'package:flutter_rush/utils/global_utils.dart';
+//import 'package:provide/provide.dart';
 
 class UsefulSiteWidget extends StatefulWidget {
-  const UsefulSiteWidget({Key key}):super(key:key);
+  final List<UsefulSiteEntity> initData;
+  static const String TITLE = "Useful Site";
+
+  const UsefulSiteWidget({Key key, this.initData}) : super(key: key);
+
   @override
   _UsefulSiteWidgetState createState() => _UsefulSiteWidgetState();
 }
 
 class _UsefulSiteWidgetState extends State<UsefulSiteWidget> {
-  List<UsefulSiteEntity> _usefulSite = List();
 
   @override
   void initState() {
-    HttpUtils().requestArticleModel().then((value) {
-      setState(() {
-        _usefulSite.clear();
-        _usefulSite = value;
-      });
-    });
     super.initState();
-    print("UsefulSiteWidget initState");
-
   }
 
   @override
   Widget build(BuildContext context) {
-    print("UsefulSiteWidget build");
+    print("_UsefulSiteWidgetState");
     return Container(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.all(GlobalUtils.calcWidgetHeightMultiple(0.015)),
-          alignment: AlignmentDirectional.centerStart,
-          child: Text(
-            "Useful Site",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Container(
-//          color: Colors.red,
-          height: GlobalUtils.calcWidgetHeightMultiple(1),
-          child: GridView.builder(
-            scrollDirection: Axis.horizontal,
-//            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemCount: _usefulSite.length,
-              itemBuilder: (context, index) => _buildItem(index)
-          ),
-        ),
-      ],
-    ));
+        height: GlobalUtils.calcWidgetHeightMultiple(0.12),
+//        child: Provide<UsefulSiteData>(
+//          builder: (context, child, data) {
+//            return ListView.builder(
+//              physics: BouncingScrollPhysics(),
+//              itemCount: data.usefulSite!=null?data.usefulSite.length:widget.initData.length,
+//              itemBuilder: (context, index) =>
+//                  _buildItem(data.usefulSite!=null?data.usefulSite[index]:widget.initData[index]),
+//              scrollDirection: Axis.horizontal,
+//            );
+//          },
+//        )
+    );
   }
 
-  Widget _buildItem(int index) {
+  Widget _buildItem(UsefulSiteEntity model) {
+
     return Card(
-      child: Center(
-        child: Text(_usefulSite[index].name),
+      margin: EdgeInsets.all(9),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(14.0))),
+      clipBehavior: Clip.hardEdge,
+      child: Container(
+        child: Center(
+          child: Text(
+            model.name.trim(),
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+        ),
+        width: GlobalUtils.calcWidgetWidthMultiple(0.5),
       ),
     );
   }

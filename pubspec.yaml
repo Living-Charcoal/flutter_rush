@@ -14,15 +14,19 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  provider: ^4.0.3
+  shimmer: ^1.0.1
   webview_flutter: ^0.3.19+3
   flutter_swiper : ^1.1.6
   build_runner: ^1.7.3
   json_serializable: ^3.2.5
   jpush_flutter: 0.1.0
   dio: ^3.0.8
+  flutter_html: ^0.11.1
+  sprintf: "^4.0.0"
   flutter:
     sdk: flutter
 

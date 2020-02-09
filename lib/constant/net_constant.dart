@@ -6,4 +6,8 @@ class NetConstant {
   static const String HOT_KEYS = "/hotkey/json";
 
   static const String USEFUL_SITE = "/friend/json";
+
+  static const String TOP_ARTICLE="/article/top/json";
+
+  static const String MAIN_ARTICLE ="""/article/list/%s/json""";
 }
