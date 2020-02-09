@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -18,23 +19,28 @@ class MainContentWidget extends StatefulWidget {
 }
 
 class _MainContentWidgetState extends State<MainContentWidget> {
-  void _getData() {
+  void _getData(bool refresh) {
     Provider.of<SwiperData>(context, listen: false).changeData();
     Provider.of<TopArticleProvider>(context, listen: false).getTopArticle();
-    Provider.of<MainArticleProvider>(context, listen: false)
-        .getMainArticle("0");
+    if(refresh){
+      Provider.of<MainArticleProvider>(context, listen: false).refreshData("0");
+    }else{
+      Provider.of<MainArticleProvider>(context, listen: false)
+          .getMainArticle("0");
+    }
+
   }
 
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 1500)).then((value) {
-      _getData();
+      _getData(false);
     });
   }
 
   Future<void> _handleRefresh() async {
-    _getData();
+    _getData(true);
   }
 
   @override

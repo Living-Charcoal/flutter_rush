@@ -22,4 +22,19 @@ class MainArticleProvider with ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void refreshData(String page){
+    HttpUtils().requestMainArticle(page).then((onValue) {
+      if (_mainArticle !=null){
+        _mainArticle=null;
+      }
+      _mainArticle = onValue;
+      if(_model!=null){
+        _model = null;
+      }
+      _model=onValue.datas;
+      notifyListeners();
+    });
+
+  }
 }

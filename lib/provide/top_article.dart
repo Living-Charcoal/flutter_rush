@@ -9,6 +9,9 @@ class TopArticleProvider with ChangeNotifier {
 
   void getTopArticle() async {
     HttpUtils().requestTopArticle().then((onValue){
+      if(_articleModel!=null){
+       _articleModel=null;
+      }
       _articleModel=onValue;
       notifyListeners();
     }

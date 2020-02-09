@@ -12,6 +12,9 @@ class SwiperData with ChangeNotifier {
   void changeData() async {
     print("change");
     HttpUtils().requestBanner().then((value) {
+      if(_bannerModel!=null){
+        _bannerModel=null;
+      }
       _bannerModel = value;
       notifyListeners();
     });

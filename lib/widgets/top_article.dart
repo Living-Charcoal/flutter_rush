@@ -33,6 +33,7 @@ class MainNormalArticle extends StatelessWidget {
 
   MainNormalArticle(this.mainArticle, this.mainArticleProvider);
 
+
   @override
   Widget build(BuildContext context) {
     if (mainArticle == null || mainArticle.isEmpty) {

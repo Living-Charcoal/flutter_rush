@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: null,
-        child: new Icon(Icons.add),
+        child: new Icon(Icons.search),
       ),
       body: Column(
         children: <Widget>[
