@@ -103,7 +103,7 @@ class SkeletonList extends StatelessWidget {
   final IndexedWidgetBuilder builder;
 
   SkeletonList(
-      {this.length: 6, //一般屏幕长度够用
+      {this.length: 6,
       this.padding = const EdgeInsets.all(7),
       @required this.builder});
 
@@ -114,16 +114,12 @@ class SkeletonList extends StatelessWidget {
 
     return SingleChildScrollView(
       physics: NeverScrollableScrollPhysics(),
-      child: Shimmer.fromColors(
-          period: Duration(milliseconds: 1200),
-          baseColor: isDark ? Colors.grey[700] : Colors.grey[350],
-          highlightColor: isDark ? Colors.grey[500] : Colors.grey[200],
-          child: Padding(
-              padding: padding,
-              child: Column(
-                children:
-                    List.generate(length, (index) => builder(context, index)),
-              ))),
+        child: Padding(
+            padding: padding,
+            child: Column(
+              children:
+              List.generate(length, (index) => builder(context, index)),
+            ))
     );
   }
 }

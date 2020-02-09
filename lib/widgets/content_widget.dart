@@ -5,6 +5,7 @@ import 'package:flutter_rush/provide/main_article_provider.dart';
 import 'package:flutter_rush/provide/swiper_data.dart';
 import 'package:flutter_rush/provide/top_article.dart';
 import 'package:flutter_rush/widgets/article_widget.dart';
+import 'package:flutter_rush/widgets/skeleton.dart';
 
 import 'package:flutter_rush/widgets/skeleton_wait.dart';
 import 'package:flutter_rush/widgets/top_article.dart';
@@ -63,10 +64,6 @@ class _MainContentWidgetState extends State<MainContentWidget> {
                 }
               },
             ),
-//              child: ChangeNotifierProvider(
-//            create: (context) => _swiperData,
-//
-//          )
           ),
           SliverToBoxAdapter(
             child: DefaultTitle(
@@ -76,49 +73,22 @@ class _MainContentWidgetState extends State<MainContentWidget> {
           Consumer2<TopArticleProvider, MainArticleProvider>(
             builder: (BuildContext context, TopArticleProvider value,
                 MainArticleProvider value2, Widget child) {
-//              print(value.articleModel);
               if(value.articleModel!=null){
                 return ArticleWidget(initData: value.articleModel,top: true,);
               }else{
                 return SliverToBoxAdapter(
-                  child: Text("hahahhahaha"),
+                  child: SkeletonList(
+                    builder: (context,i){
+                      return ArticleSkeletonItem();
+                    },
+                  )
                 );
               }
 
             },
           )
-//          SliverToBoxAdapter(
-//              child: Consumer2<TopArticleProvider, MainArticleProvider>(
-//            builder: (BuildContext context, TopArticleProvider value,
-//                MainArticleProvider value2, Widget child) {
-//              return ArticleWidget();
-//
-//            },
-//          )),
-
-//            FutureBuilder<List<UsefulSiteEntity>>(
-//              future: _futureSite,
-//              builder: (context, snap) {
-//                if (snap.connectionState == ConnectionState.done &&
-//                    !snap.hasError) {
-//                  return UsefulSiteWidget(
-//                    initData: snap.data,
-//                  );
-//                } else {
-//                  return SkeletonSite();
-//                }
-//              },
-//            ),
-//            DefaultTitle(
-//              title: TopArticle.TITLE,
-//            ),
-//            Container(
-//              child:TopArticle(),
-//              height: GlobalUtils.calcWidgetHeightMultiple(10),
-//            )
         ],
 
-//        ),
       ),
       onRefresh: _handleRefresh,
     );
