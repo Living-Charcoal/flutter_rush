@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rush/page/home_page.dart';
+import 'package:flutter_rush/page/type_page.dart';
+import 'package:flutter_rush/provide/tree_model_provider.dart';
 import 'package:flutter_rush/utils/global_utils.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   @override
@@ -10,11 +13,17 @@ class BottomNavigationWidget extends StatefulWidget {
 
 class BottomNavigationState extends State<BottomNavigationWidget> {
   var _currentIndex = 0;
-  List<Widget> _list = <Widget>[];
+  final List<Widget> _list = <Widget>[
+    MyHomePage(),
+    ChangeNotifierProvider<TreeModelProvider>(
+      create: (BuildContext context) => TreeModelProvider(),
+      child: TypePage(),
+    )
+  ];
 
   @override
   void initState() {
-    _list..add(MyHomePage());
+    print("BottomNavigationState");
     super.initState();
   }
 
@@ -24,7 +33,10 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
 
     // TODO: implement build
     return Scaffold(
-      body: MyHomePage(),
+      body: IndexedStack(
+        index: this._currentIndex,
+        children: this._list,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 35.0,
         selectedFontSize: 10.0,
@@ -58,13 +70,13 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
                 Icons.adjust,
               ),
               title: Text(
-                'mine',
+                'MINE',
               )),
         ],
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
-            _currentIndex = index;
+            _currentIndex = index % 2;
           });
         },
         type: BottomNavigationBarType.fixed,

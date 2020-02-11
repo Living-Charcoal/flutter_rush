@@ -33,7 +33,6 @@ class MainNormalArticle extends StatelessWidget {
 
   MainNormalArticle(this.mainArticle, this.mainArticleProvider);
 
-
   @override
   Widget build(BuildContext context) {
     if (mainArticle == null || mainArticle.isEmpty) {
@@ -45,18 +44,37 @@ class MainNormalArticle extends StatelessWidget {
     } else {
       return SliverList(
         delegate: SliverChildBuilderDelegate((context, i) {
-          if(i==mainArticle.length-1){
-            mainArticleProvider.getMainArticle(mainArticleProvider.mainArticle.curPage.toString());
-            return Container(
-              height: GlobalUtils.calcWidgetHeightMultiple(0.1),
-              child: Center(child: CircularProgressIndicator(backgroundColor: Colors.black12,),),
-            );
+          if (i == mainArticle.length) {
+            if (mainArticleProvider.mainArticle.curPage == mainArticleProvider.mainArticle.pageCount) {
+              return Container(
+                height: GlobalUtils.calcWidgetHeightMultiple(0.1),
+                child: Center(
+                  child: Text("没有更多数据"),
+                ),
+              );
+            } else {
+              mainArticleProvider.getMainArticle(mainArticleProvider.mainArticle.curPage.toString());
+
+              return Container(
+                height: GlobalUtils.calcWidgetHeightMultiple(0.1),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.black12,
+                  ),
+                ),
+              );
+            }
           }
-          return ArticleWidget(
-            initData: mainArticle[i],
-            top: false,
-          );
-        }, childCount: mainArticle.length),
+          if(mainArticleProvider.mainArticle.total>i){
+            return ArticleWidget(
+              initData: mainArticle[i],
+              top: false,
+            );
+          }else{
+            return SizedBox();
+          }
+
+        }, childCount: mainArticle.length + 1),
       );
     }
   }

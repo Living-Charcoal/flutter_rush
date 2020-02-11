@@ -22,8 +22,6 @@ class _SwiperWidgetState extends State<SwiperWidget> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-//        child: Provide<SwiperData>(
-//          builder: (context, child, data) {
             child: Swiper(
               duration: 500,
               autoplay: true,
@@ -41,8 +39,6 @@ class _SwiperWidgetState extends State<SwiperWidget> {
                  widget.initData[index],
               ),
             ),
-//          },
-//        ),
         constraints: BoxConstraints.loose(Size(
             GlobalUtils.calcScreenWidth(),
             GlobalUtils.calcWidgetHeightMultiple(0.25))));

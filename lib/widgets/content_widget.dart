@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_rush/provide/float_button_provider.dart';
 import 'package:flutter_rush/provide/main_article_provider.dart';
 import 'package:flutter_rush/provide/swiper_data.dart';
 import 'package:flutter_rush/provide/top_article.dart';
@@ -19,6 +19,7 @@ class MainContentWidget extends StatefulWidget {
 }
 
 class _MainContentWidgetState extends State<MainContentWidget> {
+  ScrollController _controller =ScrollController();
   void _getData(bool refresh) {
     Provider.of<SwiperData>(context, listen: false).changeData();
     Provider.of<TopArticleProvider>(context, listen: false).getTopArticle();
@@ -30,10 +31,21 @@ class _MainContentWidgetState extends State<MainContentWidget> {
     }
 
   }
-
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
   @override
   void initState() {
     super.initState();
+    _controller.addListener((){
+      if(_controller.offset<350){
+        Provider.of<FloatButtonProvider>(context,listen: false).changeTop(true,_controller);
+      }else{
+        Provider.of<FloatButtonProvider>(context,listen: false).changeTop(false,_controller);
+      }
+    });
     Future.delayed(Duration(milliseconds: 1500)).then((value) {
       _getData(false);
     });
@@ -48,6 +60,7 @@ class _MainContentWidgetState extends State<MainContentWidget> {
     return RefreshIndicator(
       color: Colors.red,
       child: CustomScrollView(
+        controller: _controller,
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: Consumer<SwiperData>(

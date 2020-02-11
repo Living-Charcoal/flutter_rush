@@ -5,6 +5,7 @@ import 'package:flutter_rush/model/banner_model.dart';
 import 'package:flutter_rush/model/base_response.dart';
 import 'package:flutter_rush/model/hot_keys.dart';
 import 'package:flutter_rush/model/main_article.dart';
+import 'package:flutter_rush/model/tree_model.dart';
 import 'package:flutter_rush/model/useful_site_entity.dart';
 import 'package:flutter_rush/network/cache_interceptor.dart';
 import 'package:flutter_rush/utils/log_utils.dart';
@@ -60,9 +61,20 @@ class HttpUtils {
   }
 
   Future<MainArticle> requestMainArticle(String page) async{
-    var res  = await dio.get(sprintf(NetConstant.MAIN_ARTICLE,[page]),options: _options.merge(extra: {"noCache": true}));
+    var res  = await dio.get(sprintf(NetConstant.MAIN_ARTICLE,[page]),options: _options.merge(extra: {"noCache": false}));
     MainArticle ret =MainArticle.fromJson(BaseResponse<dynamic>.fromJson(res.data).data);
-//    LogUtil.d(ret);
+    return ret;
+  }
+
+  Future<List<TreeModel>> requestTreeModel() async{
+    var res  = await dio.get(NetConstant.TREE_DATA,options: _options.merge(extra: {"noCache": false}));
+    List<TreeModel> ret = BaseResponse<List<dynamic>>.fromJson(res.data).data.map((f)=>TreeModel.fromJson(f)).toList();
+    return ret;
+  }
+
+  Future<MainArticle> requestTypeArticle(String page,String cid) async{
+    var res  = await dio.get(sprintf(NetConstant.TYPE_ARTICLE,[page,cid]),options: _options.merge(extra: {"noCache": false}));
+    MainArticle ret =MainArticle.fromJson(BaseResponse<dynamic>.fromJson(res.data).data);
     return ret;
   }
 }

@@ -11,7 +11,7 @@ class MainArticleProvider with ChangeNotifier {
 
   List<ArticleModel> get model => _model;
 
-  void getMainArticle(String page) {
+  void getMainArticle(String page) async {
     HttpUtils().requestMainArticle(page).then((onValue) {
       _mainArticle = onValue;
       if(_model==null){
@@ -23,7 +23,7 @@ class MainArticleProvider with ChangeNotifier {
     });
   }
 
-  void refreshData(String page){
+  void refreshData(String page) async {
     HttpUtils().requestMainArticle(page).then((onValue) {
       if (_mainArticle !=null){
         _mainArticle=null;
