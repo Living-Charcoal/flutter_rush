@@ -7,6 +7,8 @@ import 'package:flutter_rush/widgets/bottom_navigation.dart';
 
 import 'network/http_utils.dart';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart'; // 布局包
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {

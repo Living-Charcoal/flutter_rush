@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rush/page/home_page.dart';
 import 'package:flutter_rush/page/type_page.dart';
 import 'package:flutter_rush/provide/tree_model_provider.dart';
+import 'package:flutter_rush/page/mine.dart';
+import 'package:flutter_rush/page/save.dart';
 import 'package:flutter_rush/utils/global_utils.dart';
 import 'package:provider/provider.dart';
 
@@ -18,12 +20,13 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
     ChangeNotifierProvider<TreeModelProvider>(
       create: (BuildContext context) => TreeModelProvider(),
       child: TypePage(),
-    )
+    ),
+    SaveWidget(),
+    MinePage()
   ];
 
   @override
   void initState() {
-    print("BottomNavigationState");
     super.initState();
   }
 
@@ -76,7 +79,7 @@ class BottomNavigationState extends State<BottomNavigationWidget> {
         currentIndex: _currentIndex,
         onTap: (int index) {
           setState(() {
-            _currentIndex = index % 2;
+            _currentIndex = index;
           });
         },
         type: BottomNavigationBarType.fixed,
