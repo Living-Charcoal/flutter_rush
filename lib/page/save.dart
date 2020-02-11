@@ -16,7 +16,7 @@ class _SaveWidgetState extends State<SaveWidget> {
   void initState() {
     super.initState();
     // 创建Controller
-    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController = TabController(length: tabs.length,vsync: ScrollableState());
   }
 
   Widget build(BuildContext context) {
